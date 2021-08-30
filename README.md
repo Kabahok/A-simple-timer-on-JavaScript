@@ -70,5 +70,23 @@ We immediately import the function to use it in the assembly (if you are working
                 clearInterval(timeInterval);
             }
         }
+
+// Calling the function
+        setClock(id, deadline);
     };
 ```
+
+### Auxiliary function `addZero()`:
+
+```JavaScript
+// If the input value is less than 10 (seconds, minutes, hours, or days), the function returns a string with 0 before the input value, otherwise it returns just the input value
+      function addZero(num) {
+        if (num < 10) {
+            return '0' + num;
+        } else {
+            return num;
+        }
+    }
+```
+
+
