@@ -17,7 +17,9 @@ We immediately import the function to use it in the assembly (if you are working
 
 ```JavaScript
   const getTimesPart = (endtime) => {
-        const t = Date.parse(endtime) - Date.parse(new Date()); // We calculate the number of milliseconds(The difference between the deadline and the current date, everything is                                                                    calculated in milliseconds)
+  // We calculate the number of milliseconds(The difference between the deadline and the current date, everything is                                                          calculated in milliseconds
+  
+        const t = Date.parse(endtime) - Date.parse(new Date());
 
         const seconds = Math.floor((t / 1000) % 60),
               minutes = Math.floor((t/1000/60) % 60),
@@ -30,6 +32,43 @@ We immediately import the function to use it in the assembly (if you are working
             'minutes': minutes,
             'hours': hours,
             'days': days
+        }
+    };
+```
+
+### Creating a new function `setClock()`, which will substitute values in the HTML code:
+
+```JavaScript
+  const setClock = (selector, endtime) => {
+  // getting the elements from page
+  
+        const timer = document.querySelector(selector),
+              seconds = timer.querySelector('#seconds'),
+              minutes = timer.querySelector('#minutes'),
+              hours = timer.querySelector('#hours'),
+              days = timer.querySelector('#days'),
+              timeInterval = setInterval(updateClock, 1000); //Creating function, which will substitute values every second
+
+        function updateClock() {
+        // getting in variable functions`s value (object with data)
+            const t = getTimesPart(endtime); 
+            
+//The following paragraph describes the function addZero()
+
+            seconds.textContent = addZero(t.seconds);
+            minutes.textContent = addZero(t.minutes);
+            hours.textContent = addZero(t.hours);
+            days.textContent = addZero(t.days);
+
+// We check if the difference is less than 0, then we stop the interval and set the timer to 0 
+            if (t.total < 0) {
+                seconds.textContent = '00';
+                minutes.textContent = '00';
+                hours.textContent = '00';
+                days.textContent = '00';
+    
+                clearInterval(timeInterval);
+            }
         }
     };
 ```
