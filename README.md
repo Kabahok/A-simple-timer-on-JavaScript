@@ -89,4 +89,22 @@ We immediately import the function to use it in the assembly (if you are working
     }
 ```
 
+### it remains to export the function to the main assembly file and call it with the necessary arguments(HTML markup is also presented below):
 
+```JavaScript
+  export timer from './timer.js'
+  
+  let deadline = ('your deadline');
+  
+  timer('.container1', deadline);
+```
+
+### `HTML`:
+```html 
+  <div class="container1">
+    <div><div><span id="days">08</span></div><div>days</div></div>
+    <div><div><span id="hours">18</span></div><div>hours</div></div>
+    <div><div><span id="minutes">33</span></div><div>minutes</div></div>
+    <div><div><span id="seconds">44</span></div><div>seconds</div></div>      
+  </div>
+```
